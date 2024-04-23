@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
 module.exports.checkAuth = (req, res, next) => {
-  console.log(req.headers);
   // 1 - extract JWT from Authorization Header
   const token = req.headers?.authorization;
   // 2 - verify JWT signature (jwt.verify)

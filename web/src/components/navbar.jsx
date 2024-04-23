@@ -11,6 +11,12 @@ function Navbar() {
         <Link className="navbar-brand" to="/">
           Iron Fork | {context.user?.name}
         </Link>
+
+        {context.user && (
+          <button onClick={context.doLogout} className="btn btn-sm btn-danger">
+            logout
+          </button>
+        )}
       </div>
     </nav>
   );

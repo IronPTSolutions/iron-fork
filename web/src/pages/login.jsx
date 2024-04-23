@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/auth.context";
+import { useAlert } from "../contexts/alert.context";
 
 function Login() {
   const navigate = useNavigate();
+  const { showAlert } = useAlert();
   const { doLogin } = useContext(AuthContext);
 
   const {
@@ -13,24 +15,18 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const [error, setError] = useState();
-
   async function onSubmit(data) {
     try {
       await doLogin(data);
 
       navigate("/");
     } catch (err) {
-      setError(true);
+      showAlert("invalid credentials");
     }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {error && (
-        <div className="alert alert-danger">error. Review form data</div>
-      )}
-
       <div className="mb-3">
         <label htmlFor="email" className="form-label">
           Email address

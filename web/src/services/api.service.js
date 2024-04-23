@@ -15,9 +15,13 @@ http.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.response.status === 401 && location.pathname !== "/login") {
+    if (
+      error.response.status === 401 &&
+      location.pathname !== "/login" &&
+      location.pathname !== "/register"
+    ) {
       // navigate refreshing page
-      localStorage.clear();
+      localStorage.removeItem("token");
       window.location.replace("/login");
     }
 
@@ -43,4 +47,8 @@ export function getProfile() {
 
 export function getRestaurants() {
   return http.get("/restaurants");
+}
+
+export function logout() {
+  localStorage.removeItem("token");
 }

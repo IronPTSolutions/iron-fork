@@ -1,20 +1,21 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../services/api.service";
+import { useAlert } from "../contexts/alert.context";
 
 function Register() {
   const navigate = useNavigate();
   const latitude = useRef(0);
   const longitude = useRef(0);
   const ref = useRef(null);
+  const { showAlert } = useAlert();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [error, setError] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -26,8 +27,6 @@ function Register() {
 
   async function onSubmit(data) {
     try {
-      setError(false);
-
       await createUser({
         ...data,
         location: {
@@ -38,16 +37,12 @@ function Register() {
 
       navigate("/login");
     } catch (err) {
-      setError(true);
+      showAlert("error. review form data");
     }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {error && (
-        <div className="alert alert-danger">error. Review form data</div>
-      )}
-
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
           Name

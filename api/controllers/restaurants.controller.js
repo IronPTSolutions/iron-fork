@@ -17,10 +17,16 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.list = (req, res, next) => {
-  Restaurant.find()
-    .then((restaurants) => {
-      res.json(restaurants);
-    })
+  const { category, limit = 20, page = 0 } = req.query;
+  const criterial = {};
+  if (category) {
+    criterial.category = category;
+  }
+  Restaurant.find(criterial)
+    .sort({ _id: -1 })
+    .skip(page * limit)
+    .limit(limit)
+    .then((restaurants) => res.json(restaurants))
     .catch(next);
 };
 

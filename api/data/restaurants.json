@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Yakiniku Rikyu",
+    "coverUrl": "https://res.cloudinary.com/tf-lab/image/upload/w_640,c_fill,q_auto,f_auto/restaurant/5d1805b9-a794-4655-a9dc-23903ebeeb66/a7ab18fc-e2af-46da-964d-1ccf0008fc0d.jpg",
+    "category": "japonés",
+    "tables": 50,
+    "avgPrice": 55,
+    "address": "Paseo de la Castellana, 15, 28046 Madrid",
+    "location": {
+      "type": "Point",
+      "coordinates": [-3.690210, 40.428210]
+    }
+  },
+  {
+    "name": "Healthy Poke Plenilunio",
+    "coverUrl": "https://res.cloudinary.com/tf-lab/image/upload/w_640,c_fill,q_auto,f_auto/restaurant/86e8037e-2141-4c65-9ce0-d129ccb2d7e2/eb3d920f-92cd-4c9e-864d-6ac0eb18e074.jpg",
+    "category": "asiático",
+    "tables": 20,
+    "avgPrice": 16,
+    "address": "C. de Aracne, s/n, 28022 Madrid",
+    "location": {
+      "type": "Point",
+      "coordinates": [-3.588860, 40.446410]
+    }
+  },
+  {
+    "name": "Ottica",
+    "coverUrl": "https://res.cloudinary.com/tf-lab/image/upload/w_1920,c_fill,q_auto,f_auto/restaurant/cd469977-e3f9-400e-aeb6-928c04dd8f7c/43f8e431-1d8c-4d75-abb1-18b7c3cd81da.jpg",
+    "category": "mediterráneo",
+    "tables": 60,
+    "avgPrice": 25,
+    "address": "Calle del Padre Claret, 1, 28002 Madrid",
+    "location": {
+      "type": "Point",
+      "coordinates": [-3.665450, 40.444172]
+    }
+  },
+  {
+    "name": "QUIMBAYA by Edwin Rodríguez",
+    "coverUrl": "https://res.cloudinary.com/tf-lab/image/upload/w_640,c_fill,q_auto,f_auto/restaurant/b7d0f048-9e84-4999-a84c-e79d98355100/1bcf6b9c-dd07-4f05-bfef-133e62db7350.jpg",
+    "category": "colombiano",
+    "tables": 10,
+    "avgPrice": 125,
+    "address": "Calle de Zurbano, 63, 28010 Madrid",
+    "location": {
+      "type": "Point",
+      "coordinates": [-3.693220, 40.436250]
+    }
+  },
+  {
+    "name": "Vaca Nostra",
+    "coverUrl": "https://res.cloudinary.com/tf-lab/image/upload/w_640,c_fill,q_auto,f_auto/restaurant/9fa31d49-8d99-48f2-8a72-93397f6b1217/04b1dd01-873e-4fb8-b58f-09038a67bb5d.jpg",
+    "category": "asador",
+    "tables": 30,
+    "avgPrice": 60,
+    "address": "Paseo de la Castellana, 257, 28046 Madrid",
+    "location": {
+      "type": "Point",
+      "coordinates": [-3.693220, 40.436250]
+    }
+  }
+]

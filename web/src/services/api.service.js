@@ -5,7 +5,7 @@ const http = axios.create({
 });
 
 http.interceptors.request.use(function (config) {
-  config.headers.authorization = localStorage.getItem("token");
+  config.headers.authorization = `BEARER ${localStorage.getItem("token") }`;
   return config;
 });
 
@@ -45,8 +45,8 @@ export function getProfile() {
   return http.get("/profile");
 }
 
-export function getRestaurants() {
-  return http.get("/restaurants");
+export function getRestaurants(params) {
+  return http.get("/restaurants", { params });
 }
 
 export function logout() {

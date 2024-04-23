@@ -18,7 +18,7 @@ module.exports.create = (req, res, next) => {
   Restaurant.findById(req.params.id)
     .then((restaurant) => {
       if (restaurant) {
-        Comment.create({
+        return Comment.create({
           ...req.body,
           restaurant: req.params.id,
           author: req.user.id,

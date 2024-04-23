@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
-import { getRestaurants } from "../services/api.service";
+import RestaurantsList from "../components/restaurants/restaurants-list/restaurants-list";
 
 function Home() {
-  const [restaurants, setRestaurants] = useState(null);
-
-  useEffect(() => {
-    getRestaurants().then((response) => {
-      setRestaurants(response.data);
-    });
-  }, []);
-
-  if (!restaurants) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-      <pre>{JSON.stringify(restaurants, null, 2)}</pre>
-    </div>
+    <>
+      <h2>Last restaurants:</h2>
+      <RestaurantsList  limit={2} page={1} />
+      
+      <h2>Top Asiática!</h2>
+      <RestaurantsList category="asiático" />
+    </>
   );
 }
 

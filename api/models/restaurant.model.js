@@ -8,6 +8,21 @@ const restaurantSchema = new Schema(
       type: String,
       required: "Name is required",
     },
+    coverUrl: {
+      type: String,
+      required: 'Cover image url is required',
+      validate: {
+        validator: function (url) {
+          try {
+            new URL(url);
+            return true;
+          } catch (error) {
+            return false;
+          }
+        },
+        message: 'Invalid cover image url'
+      }
+    },
     category: {
       type: String,
       enum: categories,
@@ -42,6 +57,7 @@ const restaurantSchema = new Schema(
       virtuals: true,
       transform: (doc, ret) => {
         ret.id = ret._id;
+        ret.location = ret.location.coordinates.reverse();
         delete ret._id;
         delete ret.__v;
         return ret;

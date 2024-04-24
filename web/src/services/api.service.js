@@ -49,6 +49,10 @@ export function getRestaurants(params) {
   return http.get("/restaurants", { params });
 }
 
+export function getRestaurant(id) {
+  return http.get(`/restaurants/${id}`);
+}
+
 export function logout() {
   localStorage.removeItem("token");
 }

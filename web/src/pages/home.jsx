@@ -1,14 +1,13 @@
-import RestaurantsList from "../components/restaurants/restaurants-list/restaurants-list";
+import PageLayout from "../components/layouts/page-layout/page-layout";
+import RestaurantsSection from "../components/restaurants/restaurants-section/restaurants-section";
 
 function Home() {
   return (
-    <>
-      <h2>Last restaurants:</h2>
-      <RestaurantsList  limit={2} page={1} />
-      
-      <h2>Top Asiática!</h2>
-      <RestaurantsList category="asiático" />
-    </>
+    <PageLayout withJumbo={true}>
+      <RestaurantsSection title={"What's new"} className="mb-4"/>
+      <RestaurantsSection title={"Asia in the palm of your hand"} className="mb-4" category={"asiático"}/>
+      <RestaurantsSection title={"Fancy Mediterranian food"} category={"mediterráneo"}/>
+    </PageLayout>
   );
 }
 

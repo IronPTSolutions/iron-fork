@@ -26,15 +26,14 @@ function RestaurantsList({ category, limit, page }) {
   const handleReload = () => setReload(!reload)
 
   return (
-    <>
-      <i className='fa fa-refresh' role='button' onClick={handleReload}></i>
-
-      <div className="row row-columns-3">
+    <div className='d-flex flex-column gap-2'>
+      <div className="row row-cols-5 g-2">
         {restaurants.map((restaurant) => (
           <div key={restaurant.id} className="col"><RestaurantItem restaurant={restaurant} /></div>
         ))}
       </div>
-    </>
+      <button className='btn btn-sm btn-outline-secondary fw-light algin-self-end' onClick={handleReload}>Reload</button>
+    </div>
   )
 }
 

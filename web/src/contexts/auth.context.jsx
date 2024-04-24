@@ -14,7 +14,8 @@ export function AuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    fetchProfile();
+    const token = localStorage.getItem("token");
+    if (token) fetchProfile();
   }, []);
 
   async function doLogin(data) {

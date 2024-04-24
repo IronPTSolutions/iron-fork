@@ -1,17 +1,18 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import Restaurant from "./pages/restaurant";
-import Navbar from "./components/navbar";
+import Navbar from "./components/ui/navbar/navbar";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import { AlertProvider } from "./contexts/alert.context";
+import Footer from "./components/ui/footer/footer";
 
 function App() {
   return (
     <>
-      <Navbar />
+      <main className="flex-shrink-0">
+        <Navbar />
 
-      <main className="container">
         <AlertProvider>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -21,6 +22,7 @@ function App() {
           </Routes>
         </AlertProvider>
       </main>
+      <Footer />
     </>
   );
 }

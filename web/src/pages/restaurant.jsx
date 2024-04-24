@@ -11,11 +11,13 @@ function Restaurant() {
 
   useEffect(() => {
     async function fetch() {
-      const { status, data } = await getRestaurant(id);
-      if (status == 404) {
-        useNavigate('/');
-      } else {
+      try {
+        const { data } = await getRestaurant(id);
         setRestaurant(data);
+      } catch (error) {
+        if (error.response?.status == 404) {
+          navigate('/');
+        }
       }
     }
     fetch();

@@ -2,11 +2,8 @@ const mongoose = require("mongoose");
 const Restaurant = require("../models/restaurant.model");
 
 module.exports.create = (req, res, next) => {
-  console.log(req.body);
   Restaurant.create(req.body)
-    .then((restaurant) => {
-      res.status(201).json(restaurant);
-    })
+    .then((restaurant) => res.status(201).json(restaurant))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         res.status(400).json(err.errors);
@@ -17,10 +14,20 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.list = (req, res, next) => {
-  const { category, limit = 20, page = 0 } = req.query;
+  const { category, lat, lng, limit = 20, page = 0 } = req.query;
   const criterial = {};
-  if (category) {
-    criterial.category = category;
+  if (category) criterial.category = category;
+  if (lat && lng) {
+    criterial.location = {
+     $near: {
+       $geometry: {
+          type: "Point" ,
+         coordinates: [lng, lat]
+       },
+       $maxDistance: 15000,
+       $minDistance: 0
+     }
+   }
   }
   Restaurant.find(criterial)
     .sort({ _id: -1 })

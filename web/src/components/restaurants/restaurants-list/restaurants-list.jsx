@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getRestaurants } from '../../../services/api.service';
 import RestaurantItem from '../restaurant-item/restaurant-item';
 
-function RestaurantsList({ category, limit, page }) {
+function RestaurantsList({ category, limit, page, lat, lng, reloadEnabled, onUpdateRestaurants }) {
   const [restaurants, setRestaurants] = useState([]);
   const [reload, setReload] = useState(false);
 
@@ -13,15 +13,20 @@ function RestaurantsList({ category, limit, page }) {
         if (category) query.category = category;
         if (limit) query.limit = limit;
         if (page) query.page = page;
+        if (lat && lng) {
+          query.lat = lat;
+          query.lng = lng;
+        }
         
-        const response = await getRestaurants(query);
-        setRestaurants(response.data);
+        const { data: restaurants } = await getRestaurants(query);
+        setRestaurants(restaurants);
+        onUpdateRestaurants(restaurants);
       } catch (error) {
         console.error(error);
       } 
     }
     fetch();
-  }, [category, limit, reload]);
+  }, [category, limit, lat, lng, reload]);
 
   const handleReload = () => setReload(!reload)
 
@@ -32,9 +37,14 @@ function RestaurantsList({ category, limit, page }) {
           <div key={restaurant.id} className="col"><RestaurantItem restaurant={restaurant} /></div>
         ))}
       </div>
-      <button className='btn btn-sm btn-outline-secondary fw-light algin-self-end' onClick={handleReload}>Reload</button>
+      {reloadEnabled && <button className='btn btn-sm btn-outline-secondary fw-light algin-self-end' onClick={handleReload}>Reload</button>}
     </div>
   )
+}
+
+RestaurantsList.defaultProps = {
+  reloadEnabled: true,
+  onUpdateRestaurants: () => {}
 }
 
 export default RestaurantsList;

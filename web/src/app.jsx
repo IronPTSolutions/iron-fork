@@ -6,6 +6,7 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import { AlertProvider } from "./contexts/alert.context";
 import Footer from "./components/ui/footer/footer";
+import Restaurants from "./pages/restaurants";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/restaurants" element={<Restaurants />} />
             <Route path="/restaurants/:id" element={<Restaurant />} />
           </Routes>
         </AlertProvider>

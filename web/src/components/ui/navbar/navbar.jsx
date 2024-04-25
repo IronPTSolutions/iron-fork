@@ -4,7 +4,7 @@ import AuthContext from "../../../contexts/auth.context";
 
 import './navbar.css';
 
-const renderNavLinkActive = ({ isActive }) => isActive ? 'nav-link active' : 'nav-link'
+const renderNavLinkActive = ({ isActive }) => isActive ? 'nav-link active' : 'nav-link';
 
 function Navbar() {
   const { user, doLogout } = useContext(AuthContext);

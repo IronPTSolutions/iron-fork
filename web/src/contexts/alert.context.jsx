@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
 
 // Creamos el contexto
-const AlertContext = createContext();
+export const AlertContext = createContext();
 
 // Hook personalizado para acceder al contexto
 export const useAlert = () => useContext(AlertContext);

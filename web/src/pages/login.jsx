@@ -28,7 +28,7 @@ function Login() {
 
   return (
     <PageLayout>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form data-testid="login-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email address

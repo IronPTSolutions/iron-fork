@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getProfile, login, logout } from "../services/api.service";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const navigate = useNavigate();
 
   async function fetchProfile() {
@@ -37,5 +37,7 @@ export function AuthContextProvider({ children }) {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+export const useAuth = () => useContext(AuthContext);
 
 export default AuthContext;

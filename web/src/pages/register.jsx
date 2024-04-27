@@ -44,7 +44,7 @@ function Register() {
 
   return (
     <PageLayout>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form data-testid="register-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name

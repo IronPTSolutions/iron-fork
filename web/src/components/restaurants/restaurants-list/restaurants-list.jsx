@@ -32,7 +32,7 @@ function RestaurantsList({ category, limit, page, lat, lng, reloadEnabled, onUpd
 
   return (
     <div className='d-flex flex-column gap-2'>
-      <div className="row row-cols-5 g-2">
+      <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-2">
         {restaurants.map((restaurant) => (
           <div key={restaurant.id} className="col"><RestaurantItem restaurant={restaurant} /></div>
         ))}

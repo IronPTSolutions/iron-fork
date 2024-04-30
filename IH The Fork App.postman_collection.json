@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c3673481-91f5-43f0-bf73-a4c467f6089b",
+		"_postman_id": "d6dd039d-98a4-4d32-82ff-860956f2353e",
 		"name": "IH The Fork App",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "30620625"
+		"_exporter_id": "1194541"
 	},
 	"item": [
 		{
@@ -15,15 +15,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants"
 							]
 						}
@@ -45,15 +41,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants"
 							]
 						}
@@ -66,15 +58,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants/661587bb09ceb0da68e0d026",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants/661587bb09ceb0da68e0d026",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants",
 								"661587bb09ceb0da68e0d026"
 							]
@@ -97,15 +85,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants/661587bb09ceb0da68e0d025",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants/661587bb09ceb0da68e0d025",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants",
 								"661587bb09ceb0da68e0d025"
 							]
@@ -119,15 +103,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants/6615872d0d1a8ee485c0713c",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants/6615872d0d1a8ee485c0713c",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants",
 								"6615872d0d1a8ee485c0713c"
 							]
@@ -150,15 +130,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants/66181d303538ab574b9ad85e/comments",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants/66181d303538ab574b9ad85e/comments",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants",
 								"66181d303538ab574b9ad85e",
 								"comments"
@@ -185,15 +161,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/restaurants/66181d303538ab574b9ad85e/comments",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/restaurants/66181d303538ab574b9ad85e/comments",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"restaurants",
 								"66181d303538ab574b9ad85e",
 								"comments"
@@ -212,16 +184,21 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"12345678\",\n    \"email\": \"admin@example.org\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/users",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"users"
 							]
 						}
@@ -230,12 +207,42 @@
 				},
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseData = pm.response.json();",
+									"const bearer = responseData.accessToken;",
+									"if (bearer) {",
+									"    pm.collectionVariables.set(\"TOKEN_BEARER\", bearer);",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"password\": \"12345678\",\n    \"email\": \"julio@example.com\"\n}",
+							"raw": "{\n    \"password\": \"12345678\",\n    \"email\": \"pradomota90@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -243,15 +250,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/login",
-							"protocol": "http",
+							"raw": "{{BASE_API_URL}}/login",
 							"host": [
-								"localhost"
+								"{{BASE_API_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"v1",
 								"login"
 							]
 						}
@@ -259,6 +262,49 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN_BEARER}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_API_URL",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN_BEARER",
+			"value": ""
 		}
 	]
 }

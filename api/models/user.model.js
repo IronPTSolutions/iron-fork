@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 
+const admins = (process.env.ADMIN_EMAILS || '').split(',')
+  .map((email) => email.trim());
+
 const schema = new Schema(
   {
     name: {
@@ -38,6 +41,11 @@ const schema = new Schema(
         required: true,
       },
     },
+    role: {
+      type: String,
+      enum: ["admin", "guess"],
+      default: "guess"
+    }
   },
   {
     timestamps: true,
@@ -54,6 +62,10 @@ const schema = new Schema(
 );
 
 schema.pre("save", function (next) {
+  if (admins.includes(this.email)) {
+    this.role = "admin";
+  }
+
   if (this.isModified("password")) {
     bcrypt
       .hash(this.password, 10)

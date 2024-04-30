@@ -7,6 +7,8 @@ import Login from "./pages/login";
 import { AlertProvider } from "./contexts/alert.context";
 import Footer from "./components/ui/footer/footer";
 import Restaurants from "./pages/restaurants";
+import PrivateRoute from "./guards/private-route";
+import CreateRestaurant from "./pages/create-restaurant";
 
 function App() {
   return (
@@ -16,11 +18,12 @@ function App() {
 
         <AlertProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/restaurants" element={<Restaurants />} />
-            <Route path="/restaurants/:id" element={<Restaurant />} />
+            <Route path="/create-restaurant" element={<PrivateRoute role="admin" ><CreateRestaurant /></PrivateRoute>} />
+            <Route path="/restaurants" element={<PrivateRoute><Restaurants /></PrivateRoute>} />
+            <Route path="/restaurants/:id" element={<PrivateRoute><Restaurant /></PrivateRoute>} />
           </Routes>
         </AlertProvider>
       </main>

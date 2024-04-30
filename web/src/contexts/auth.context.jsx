@@ -9,13 +9,18 @@ export function AuthContextProvider({ children }) {
   const navigate = useNavigate();
 
   async function fetchProfile() {
-    const response = await getProfile();
-    setUser(response.data);
+    try {
+      const response = await getProfile();
+      setUser(response.data);
+    } catch (error) {
+      setUser(null);
+    }
   }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) fetchProfile();
+    else setUser(null);
   }, []);
 
   async function doLogin(data) {

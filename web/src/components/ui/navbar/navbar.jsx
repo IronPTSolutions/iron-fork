@@ -29,6 +29,7 @@ function Navbar() {
             )}
             {user && (
               <>
+                {user.role === 'admin' && <li className="nav-item"><NavLink className={renderNavLinkActive} to="/create-restaurant"><i className="fa fa-plus"></i></NavLink></li>}
                 <li className="nav-item"><button className="nav-link" onClick={doLogout}>Logout</button></li>
               </>
             )}

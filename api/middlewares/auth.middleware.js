@@ -33,5 +33,15 @@ module.exports.checkAuth = (req, res, next) => {
     default:
       res.status(401).json({ message: `Unsupported authorization schema ${schema}` });
   }
-  
 };
+
+module.exports.checkRole = (role) => {
+  return (req, res, next) => {
+    const user = req.user;
+    if (user && user.role === role) {
+      next();
+    } else {
+      res.status(403).json({ message: 'Forbidden' });
+    }
+  }
+}

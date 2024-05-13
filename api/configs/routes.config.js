@@ -18,7 +18,18 @@ router.get("/profile", auth.checkAuth, users.profile);
 router.post("/users", users.create);
 router.post("/login", users.login);
 
-module.exports = router;
-
-
 router.post("/enterprises/:enterpriseId/restaurants", auth.checkAuth, auth.checkRole("admin"), restaurants.create);
+
+// Error handlers
+
+router.use((req, res, next) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+router.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ message: "Internal Server Error" });
+});
+
+
+module.exports = router;

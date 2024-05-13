@@ -18,6 +18,8 @@ const schema = new Schema(
     email: {
       type: String,
       required: true,
+      lowercase: true,
+      trim: true
     },
     password: {
       type: String,
@@ -26,6 +28,8 @@ const schema = new Schema(
     username: {
       type: String,
       required: true,
+      unique: true,
+      trim: true
     },
     avatar: {
       type: String,

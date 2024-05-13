@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Restaurant = require("../models/restaurant.model");
 
 module.exports.create = (req, res, next) => {
+  if (req.file) {
+    req.body.coverUrl = req.file.path;
+  }
+
   Restaurant.create(req.body)
     .then((restaurant) => res.status(201).json(restaurant))
     .catch((err) => {
@@ -51,6 +55,10 @@ module.exports.detail = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
+  if (req.file) {
+    req.body.coverUrl = req.file.path;
+  }
+
   Restaurant.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
     new: true,

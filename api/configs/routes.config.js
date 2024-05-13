@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const storage = require('../configs/storage.config');
 const restaurants = require("../controllers/restaurants.controller");
 const comments = require("../controllers/comments.controller");
 const users = require("../controllers/users.controller");
 const auth = require("../middlewares/auth.middleware");
 
-router.post("/restaurants", auth.checkAuth, auth.checkRole("admin"), restaurants.create);
+router.post("/restaurants", auth.checkAuth, auth.checkRole("admin"), storage.single('coverImage'), restaurants.create);
 router.get("/restaurants", auth.checkAuth, restaurants.list);
 router.get("/restaurants/:id", auth.checkAuth, restaurants.detail);
-router.patch("/restaurants/:id", auth.checkAuth, auth.checkRole("admin"), restaurants.update);
+router.patch("/restaurants/:id", auth.checkAuth, auth.checkRole("admin"), storage.single('coverImage'), restaurants.update);
 router.delete("/restaurants/:id", auth.checkAuth, auth.checkRole("admin"), restaurants.delete);
 
 router.post("/restaurants/:id/comments", auth.checkAuth, comments.create);

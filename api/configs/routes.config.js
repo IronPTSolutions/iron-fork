@@ -19,8 +19,6 @@ router.get("/profile", auth.checkAuth, users.profile);
 router.post("/users", users.create);
 router.post("/login", users.login);
 
-router.post("/enterprises/:enterpriseId/restaurants", auth.checkAuth, auth.checkRole("admin"), restaurants.create);
-
 // Error handlers
 
 router.use((req, res, next) => {

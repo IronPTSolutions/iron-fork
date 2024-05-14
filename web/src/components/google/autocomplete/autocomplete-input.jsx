@@ -5,7 +5,7 @@ const autocompleteOptions = {
   type: ["address"]
 };
 
-function AutocompleteInput({ className, onPlaceChange }) {
+function AutocompleteInput({ className, error, onPlaceChange, onBlur }) {
   const autocompleteInputRef = useRef();
 
   useEffect(() => {
@@ -29,15 +29,17 @@ function AutocompleteInput({ className, onPlaceChange }) {
 
   return (
     <div className={`form-floating ${className}`}>
-      <input ref={autocompleteInputRef} type="text" className="form-control" id="autocomplete-input" placeholder="" />
+      <input ref={autocompleteInputRef} type="text" className={`form-control ${error ? 'is-invalid' : ''}`} id="autocomplete-input" placeholder="" onBlur={onBlur}/>
       <label htmlFor="autocomplete-input">Find restaurants near...</label>
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
   )
 }
 
 AutocompleteInput.defaultProps = {
   className: "",
-  onPlaceChange: (location) => console.debug(location)
+  onPlaceChange: (location) => console.debug(location),
+  onBlur: () => {}
 }
 
 export default AutocompleteInput

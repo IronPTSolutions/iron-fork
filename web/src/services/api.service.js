@@ -53,6 +53,10 @@ export function getRestaurant(id) {
   return http.get(`/restaurants/${id}`);
 }
 
+export function createRestaurant(restaurant) {
+  return http.post(`/restaurants`, restaurant);
+}
+
 export function logout() {
   localStorage.removeItem("token");
 }

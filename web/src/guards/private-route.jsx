@@ -5,7 +5,6 @@ import { Navigate } from 'react-router-dom';
 
 function PrivateRoute({ role, children }) {
   const { user } = useContext(AuthContext);
-  console.log(user);
   if (user === undefined) {
     return null;
   } else if (user === null) {
